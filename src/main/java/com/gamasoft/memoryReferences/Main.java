@@ -9,6 +9,9 @@ import java.lang.ref.WeakReference;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * @see <a href="https://medium.com/@ramtop/weak-soft-and-phantom-references-in-java-and-why-they-matter-c04bfc9dc792">Weak Soft and Phantom references in Java and why they matter.</a>
+ */
 public class Main{
 
     public static final int HOW_MANY = 500_000;
@@ -54,9 +57,9 @@ public class Main{
 
             HeavyList curr = oldTail.next;
             while (curr != null) {
-//                Reference<HeavyList> reference = new SoftReference<>(curr, queue);
+                // Reference<HeavyList> reference = new SoftReference<>(curr, queue);
                 Reference<HeavyList> reference = new WeakReference<>(curr, queue);
-//                Reference<HeavyList> reference = new PhantomReference<>(curr, queue);
+                // Reference<HeavyList> reference = new PhantomReference<>(curr, queue);
                 references.add(reference);
 
                 curr = curr.getNext();
